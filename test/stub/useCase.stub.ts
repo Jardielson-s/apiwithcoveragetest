@@ -4,4 +4,4 @@ const stub = Object.freeze({
     execute: jest.fn(),
 })
 
-export const useCaseStub = () => stub as IUseCase<unknown>
+export const useCaseStub = () => stub as IUseCase<any>
