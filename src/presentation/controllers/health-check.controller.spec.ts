@@ -1,6 +1,7 @@
 import { HealthCheckController } from './health-check.controller'
 // import { useCaseStub } from '../../../test/stub/useCase.stub'
 import { IUseCase } from '../../shared/interfaces/IUseCase.interface'
+import { healthCheckController } from 'src/domain/domain.module'
 
 const stub = Object.freeze({
     execute: jest.fn(),
@@ -12,6 +13,8 @@ describe(HealthCheckController.name, () => {
     let controller: HealthCheckController
 
     beforeEach(() => {
+        jest.clearAllMocks()
+
         useCase = useCaseStub()
         controller = new HealthCheckController(useCase)
     })
@@ -30,5 +33,11 @@ describe(HealthCheckController.name, () => {
         await controller.handler()
 
         expect(useCaseSpyOn).toHaveBeenCalled()
+    })
+
+    it('should able execute with error when call', async () => {
+        controller = new HealthCheckController({} as any)
+        const response = await controller.handler()
+        expect(response).toBeDefined()
     })
 })

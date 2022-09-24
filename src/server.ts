@@ -1,3 +1,5 @@
 import { startApp } from './app'
 
-startApp()
+;(async () => {
+    await startApp()
+})()

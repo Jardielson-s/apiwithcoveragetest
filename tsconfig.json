@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2017",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "experimentalDecorators": true,
+    "target": "es2019",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     "module": "commonjs",                                /* Specify what module code is generated. */
     "rootDir": "./src",                                  /* Specify the root folder within your source files. */
     "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
@@ -14,9 +15,6 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */,
     "noImplicitAny": true,
     "preserveConstEnums": true,
-    "paths": {
-      
-    }
   },
   "include": [
     "src/**/*"
