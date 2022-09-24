@@ -10,6 +10,6 @@ export const adapRouter = (controller: IController) => {
         }
 
         const httpResponse = await controller.handler(request)
-        return res.send(200, httpResponse)
+        return res.send(httpResponse.status, httpResponse.body)
     }
 }
