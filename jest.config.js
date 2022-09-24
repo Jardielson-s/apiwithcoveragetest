@@ -6,6 +6,7 @@ module.exports = {
         '/config/',
         'app.ts',
         'server.ts',
+        'module.ts',
     ],
     modulePathIgnorePatterns: [],
     watchPathIgnorePatterns: ['node_modules'],

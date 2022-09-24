@@ -1,13 +1,9 @@
-import { HealthCheckUseCase } from '../../domain/use-cases/health-check.use-case'
-import { HealthCheckController } from '../../presentation/controllers/health-check.controller'
 import { server } from '../restify/restify'
 import { adapRouter } from '../adapter/restify.adapter'
 import { envs } from '../../config/envs/envs'
+import { injectControllerHealthCheck } from '../main.module'
 
-server.get(
-    '/health-check',
-    adapRouter(new HealthCheckController(new HealthCheckUseCase()))
-)
+server.get('/health-check', adapRouter(injectControllerHealthCheck))
 
 export const startRestifyServer = () => {
     server.listen(envs.RESTIFY_PORT, () => {
