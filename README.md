@@ -25,3 +25,10 @@ npm test
 <p align="center">
 <img src="https://miro.medium.com/max/964/1*lhpcX6Vljr7p4OvKql3x6Q.png" style="height: 500px; width:500px"/>
 </p>
+
+Layer          |    Files   |   Files |
+-------------- |------------|---------|
+domain         | use-cases  | entities| 
+infrastructure | databases  |  aws    |
+main           | framework  | restify |
+presentation   | controllers| handlers|
