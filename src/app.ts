@@ -1,5 +1,5 @@
-import server from './main/routes/restify.routes'
+import { startRestifyServer } from './main/routes/restify.routes'
 
 export const startApp = () => {
-    server.listen(8080)
+    startRestifyServer()
 }

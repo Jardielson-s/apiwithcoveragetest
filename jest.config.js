@@ -2,9 +2,10 @@
 module.exports = {
     coveragePathIgnorePatterns: [
         '/node_modules/',
+        '/main/',
+        '/config/',
         'app.ts',
         'server.ts',
-        '/main/',
     ],
     modulePathIgnorePatterns: [],
     watchPathIgnorePatterns: ['node_modules'],
