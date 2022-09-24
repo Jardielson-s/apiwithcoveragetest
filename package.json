@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "test": "jest --coverage",
+    "start": "node -r dotenv/config dist/server.js",
     "start:dev": "ts-node-dev -r dotenv/config src/server.ts",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
@@ -24,6 +26,7 @@
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "jest": "^29.0.3",
+    "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
     "ts-jest": "^29.0.1",
     "ts-node": "^10.9.1",
