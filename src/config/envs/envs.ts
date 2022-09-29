@@ -4,6 +4,10 @@ const valid = validator.validate({
     RESTIFY_PORT: process.env.RESTIFY_PORT,
     MONGO_URI: process.env.MONGO_URI,
     EXPRESS_PORT: process.env.EXPRESS_PORT,
+    ELASTIC_SEARCH: process.env.ELASTIC_SEARCH,
+    ELASTIC_SEARCH_USER: process.env.ELASTIC_SEARCH_USER,
+    ELASTIC_SEARCH_PASSWORD: process.env.ELASTIC_SEARCH_PASSWORD,
+    LOG_SOURCE: process.env.LOG_SOURCE,
 })
 
 if (valid.error) {
@@ -17,4 +21,8 @@ export const envs = {
     RESTIFY_PORT: process.env.RESTIFY_PORT,
     MONGO_URI: process.env.MONGO_URI,
     EXPRESS_PORT: process.env.EXPRESS_PORT,
+    ELASTIC_SEARCH: process.env.ELASTIC_SEARCH,
+    ELASTIC_SEARCH_USER: process.env.ELASTIC_SEARCH_USER,
+    ELASTIC_SEARCH_PASSWORD: process.env.ELASTIC_SEARCH_PASSWORD,
+    LOG_SOURCE: process.env.LOG_SOURCE,
 }

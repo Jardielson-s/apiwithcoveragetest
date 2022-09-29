@@ -1,4 +1,6 @@
 import * as restify from 'restify'
+import * as morgan from 'morgan'
+
 import { server } from '../restify/restify'
 import { adapRouterRestify } from '../adapter/restify.adapter'
 import { envs } from '../../config/envs/envs'
@@ -7,19 +9,22 @@ import { CreateUserUseCase } from '../../domain/use-cases/create-user/create-use
 import { userRepository } from '../../infrastructure/orm/mongoose/mongoose.module'
 import { HealthCheckController } from '../../presentation/controllers/health-check.controller'
 import { HealthCheckUseCase } from '../../domain/use-cases/health-check.use-case'
+import { logger } from '../../infrastructure/logs/elasticSearch/logger'
 
 export const startRestifyServer = async () => {
     server.use(restify.plugins.bodyParser({ mapParams: true }))
-
+    server.use(morgan('combined'))
     server.get(
         '/health-check',
-        adapRouterRestify(new HealthCheckController(new HealthCheckUseCase()))
+        adapRouterRestify(
+            new HealthCheckController(new HealthCheckUseCase(logger))
+        )
     )
     server.post(
         '/api/create-user',
         adapRouterRestify(
             new CreateUserController(
-                new CreateUserUseCase(await userRepository())
+                new CreateUserUseCase(await userRepository(), logger)
             )
         )
     )

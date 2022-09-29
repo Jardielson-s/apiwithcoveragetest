@@ -13,6 +13,7 @@ module.exports = {
         'schema.ts',
         'database.ts',
         'decorator.ts',
+        'logger.ts',
     ],
     modulePathIgnorePatterns: [],
     watchPathIgnorePatterns: ['node_modules'],

@@ -9,6 +9,7 @@ import { CreateUserController } from '../../presentation/controllers/create-user
 import { HealthCheckController } from '../../presentation/controllers/health-check.controller'
 import { adapRouterExpress } from '../adapter/express.adapter'
 import app from '../express/express'
+import { logger } from '../../infrastructure/logs/elasticSearch/logger'
 
 const options = {
     definition: {
@@ -47,13 +48,15 @@ export const startServerExpress = async () => {
     )
     app.get(
         '/health-check',
-        adapRouterExpress(new HealthCheckController(new HealthCheckUseCase()))
+        adapRouterExpress(
+            new HealthCheckController(new HealthCheckUseCase(logger))
+        )
     )
     app.post(
         '/api/user',
         adapRouterExpress(
             new CreateUserController(
-                new CreateUserUseCase(await userRepository())
+                new CreateUserUseCase(await userRepository(), logger)
             )
         )
     )

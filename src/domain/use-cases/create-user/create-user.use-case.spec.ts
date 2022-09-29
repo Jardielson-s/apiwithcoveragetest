@@ -1,3 +1,4 @@
+import { ILoggerService } from 'src/shared/interfaces/ILoggerServices.interface'
 import { IRepository } from 'src/shared/interfaces/IRepository.interface'
 import { IUseCase } from 'src/shared/interfaces/IUseCase.interface'
 import { CreateUserUseCase } from './create-user.use-case'
@@ -9,9 +10,16 @@ const stub = Object.freeze({
 })
 
 const repositoryStub = () => stub as IRepository<any>
+
+const stubLogger = Object.freeze({
+    info: jest.fn(),
+})
+const LoggerServiceStub = (): any => stubLogger as ILoggerService
+
 describe(CreateUserUseCase.name, () => {
     let useCase: IUseCase<any, any>
     let repository: IRepository<any>
+    let loggerService: ILoggerService
 
     let params = {
         name: 'Jonh Doe',
@@ -21,8 +29,9 @@ describe(CreateUserUseCase.name, () => {
     beforeEach(() => {
         jest.clearAllMocks()
 
+        loggerService = LoggerServiceStub()
         repository = repositoryStub()
-        useCase = new CreateUserUseCase(repository)
+        useCase = new CreateUserUseCase(repository, loggerService)
     })
 
     it('should be defined', () => {

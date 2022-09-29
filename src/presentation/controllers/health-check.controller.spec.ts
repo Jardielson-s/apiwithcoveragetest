@@ -1,7 +1,5 @@
 import { HealthCheckController } from './health-check.controller'
-// import { useCaseStub } from '../../../test/stub/useCase.stub'
 import { IUseCase } from '../../shared/interfaces/IUseCase.interface'
-import { healthCheckController } from 'src/domain/domain.module'
 
 const stub = Object.freeze({
     execute: jest.fn(),
