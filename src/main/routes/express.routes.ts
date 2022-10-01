@@ -1,5 +1,5 @@
 import * as swaggerUi from 'swagger-ui-express'
-import * as swaggerJsdoc from 'swagger-jsdoc'
+import * as swaggerJSDoc from 'swagger-jsdoc'
 
 import { envs } from '../../config/envs/envs'
 import { CreateUserUseCase } from '../../domain/use-cases/create-user/create-user.use-case'
@@ -15,19 +15,9 @@ const options = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'LogRocket Express API with Swagger',
-            version: '0.1.0',
-            description:
-                'This is a simple CRUD API application made with Express and documented with Swagger',
-            license: {
-                name: 'MIT',
-                url: 'https://spdx.org/licenses/MIT.html',
-            },
-            contact: {
-                name: 'LogRocket',
-                url: 'https://logrocket.com',
-                email: 'info@email.com',
-            },
+            title: 'Library API',
+            version: '1.0.0',
+            description: 'A simple Express Library API',
         },
         servers: [
             {
@@ -35,17 +25,13 @@ const options = {
             },
         ],
     },
-    apis: ['exemple'],
+    apis: [`${__dirname}/*.swagger.+(ts|js)`],
 }
-
-const specs = swaggerJsdoc(options)
+const specs = swaggerJSDoc(options)
 
 export const startServerExpress = async () => {
-    app.use(
-        '/api-docs',
-        swaggerUi.serve,
-        swaggerUi.setup(specs, { explorer: true })
-    )
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
+
     app.get(
         '/health-check',
         adapRouterExpress(
