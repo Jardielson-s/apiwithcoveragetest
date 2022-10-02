@@ -32,7 +32,7 @@ export class ValidateAccountUseCase implements IUseCase<IFindByIdUser> {
                 VALIDATE_ACCOUNT_USECASE_ERROR,
                 error.message
             )
-            return error.message
+            return error
         }
     }
 }
