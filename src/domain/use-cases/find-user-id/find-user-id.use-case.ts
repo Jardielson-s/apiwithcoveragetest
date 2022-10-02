@@ -30,7 +30,7 @@ export class FindUserByIdUseCase implements IUseCase<IFindByIdUser> {
                 FIND_USER_BY_ID_USE_CASE_ERROR,
                 error.message
             )
-            return error
+            throw error
         }
     }
 }

@@ -12,6 +12,8 @@ import app from '../express/express'
 import { logger } from '../../infrastructure/logs/elasticSearch/logger'
 import { FindByIdUseController } from '../../presentation/controllers/find-by-id-user.controller'
 import { FindUserByIdUseCase } from '../../domain/use-cases/find-user-id/find-user-id.use-case'
+import { ValidateAccountController } from '../../presentation/controllers/validate-account.controller'
+import { ValidateAccountUseCase } from '../../domain/use-cases/validate-account/validate-account.use-case'
 
 const options = {
     definition: {
@@ -52,6 +54,15 @@ export const startServerExpress = async () => {
         '/api/user/:id',
         adapRouterExpress(
             new FindByIdUseController(new FindUserByIdUseCase(database, logger))
+        )
+    )
+
+    app.post(
+        '/api/user/:id',
+        adapRouterExpress(
+            new ValidateAccountController(
+                new ValidateAccountUseCase(database, logger)
+            )
         )
     )
 

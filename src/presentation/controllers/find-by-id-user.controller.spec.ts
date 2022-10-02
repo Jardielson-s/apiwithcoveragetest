@@ -1,7 +1,5 @@
 import { IController } from 'src/shared/interfaces/IController.interface'
-import { IRepository } from 'src/shared/interfaces/IRepository.interface'
 import { IUseCase } from 'src/shared/interfaces/IUseCase.interface'
-import { FindByIdUserDto } from '../dto/find-by-id-user.dto'
 import { FindByIdUseController } from './find-by-id-user.controller'
 
 const stub = Object.freeze({
