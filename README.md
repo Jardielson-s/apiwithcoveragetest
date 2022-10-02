@@ -1,15 +1,21 @@
 # API WITH COVARAGE TEST
 
+<br/>
+
 ## Description
 
 <p>
 Clean code based api, clean architecture and tdd. Api fully decoupled from frameworks, infrastructure modules and database.
 </p>
 
+<br/>
+
 ### TOOLS
 <a href="https://jestjs.io/pt-BR/"><img src="https://jestjs.io/pt-BR/img/opengraph.png"  style="height: 100px; width:100px"/></a> <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjWqo7Rl6z6AhVErpUCHVC7AqYQFnoECAMQAQ&url=https%3A%2F%2Fnodejs.org%2F&usg=AOvVaw1tY2p-vJFWJmxWlq4sTxCn"><img src="https://blog.geekhunter.com.br/wp-content/uploads/2021/02/1_mp91A9RzagntGGjBnwu4Yw.png" style="height: 100px; width:100px"/></a> <a href="https://www.typescriptlang.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png" style="height: 100px; width:100px"/></a> <a href="http://restify.com/"><img src="https://static.imasters.com.br/wp-content/uploads/2018/03/image1-2.png" style="height: 100px; width:100px"/></a> <a href="https://expressjs.com/"><img src="https://dkrn4sk0rn31v.cloudfront.net/uploads/2020/12/o-que-e-o-express-js.png" style="height: 100px; width:100px"/></a> <a href="https://www.elastic.co/pt/"><img src="https://images.velog.io/images/yoozung/post/ba8457fc-e2ac-437c-ad2d-d0baa0707990/elastic.jpg" style="height: 100px; width:100px"/></a> <a href="https://www.elastic.co/pt/kibana/"><img src="https://static-www.elastic.co/v3/assets/bltefdd0b53724fa2ce/blt81adc84f81e97ed9/5c304e3fa253ae3e67bc85b1/blog-kibana-thumbnail.jpg" style="height: 100px; width:100px"/></a> <a href="https://swagger.io/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2-qHhkU65OgRkaxFh1vRF4ycDfUOznjs7cEu5aXbMwWCYpNUMNPfDcL9Fox0a3_mbtAY&usqp=CAU" style="height: 100px; width:100px"/></a>
 
-### start project
+<br/>
+
+### Start Project
 ```
 # elasticSearch
 docker run -d -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.7.0
@@ -27,6 +33,14 @@ npm run start:dev
 npm test
 ```
 
+<br/>
+
+## Swagger Api
+```
+http://localhost:[port]/api-docs
+```
+
+<br/>
 
 ## Structure
 <p align="center">
@@ -42,3 +56,12 @@ infrastructure | databases  |  aws    | elasticSearch  |
 main           | framework  | restify | express        |
 presentation   | controllers| handlers|                |
 </p>
+
+<br/>
+
+## Implementations
+
+- [x] Create User
+- [x] Get User By Id
+- [ ] Update User
+- [ ] Delete User

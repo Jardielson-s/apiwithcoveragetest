@@ -8,4 +8,8 @@ export const validator = Joi.object({
     ELASTIC_SEARCH_USER: Joi.required(),
     ELASTIC_SEARCH_PASSWORD: Joi.required(),
     LOG_SOURCE: Joi.required(),
+    MYSQL_DB_NAME: Joi.required(),
+    MYSQL_DB_USER: Joi.required(),
+    MYSQL_DB_PASSWORD: Joi.required(),
+    MYSQL_DB_HOST: Joi.required(),
 }).options({ abortEarly: false })

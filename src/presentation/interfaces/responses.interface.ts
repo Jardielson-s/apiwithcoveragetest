@@ -35,9 +35,9 @@ export const noContent = (): IHttpResponse => {
     }
 }
 
-export const notFound = (): IHttpResponse => {
+export const notFound = (body: any): IHttpResponse => {
     return {
-        body: {},
+        body: body || {},
         status: 404,
     }
 }

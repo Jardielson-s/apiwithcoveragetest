@@ -1,4 +1,6 @@
 import { Model, Mongoose } from 'mongoose'
+import { v4 } from 'uuid'
+
 import { Status } from 'src/domain/enums/create-user.enum'
 
 export interface IUserSchema {
@@ -15,6 +17,10 @@ export class UserSchema {
     constructor(private mongoose: Mongoose) {
         const userSchema = new this.mongoose.Schema(
             {
+                _id: {
+                    type: String,
+                    default: () => v4().replace(/\-/g, ''),
+                },
                 name: {
                     type: String,
                     required: true,

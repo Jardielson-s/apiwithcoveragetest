@@ -10,6 +10,8 @@ import { HealthCheckController } from '../../presentation/controllers/health-che
 import { adapRouterExpress } from '../adapter/express.adapter'
 import app from '../express/express'
 import { logger } from '../../infrastructure/logs/elasticSearch/logger'
+import { FindByIdUseController } from '../../presentation/controllers/find-by-id-user.controller'
+import { FindUserByIdUseCase } from '../../domain/use-cases/find-user-id/find-user-id.use-case'
 
 const options = {
     definition: {
@@ -30,6 +32,7 @@ const options = {
 const specs = swaggerJSDoc(options)
 
 export const startServerExpress = async () => {
+    const database = await userRepository()
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
 
     app.get(
@@ -41,11 +44,17 @@ export const startServerExpress = async () => {
     app.post(
         '/api/user',
         adapRouterExpress(
-            new CreateUserController(
-                new CreateUserUseCase(await userRepository(), logger)
-            )
+            new CreateUserController(new CreateUserUseCase(database, logger))
         )
     )
+
+    app.get(
+        '/api/user/:id',
+        adapRouterExpress(
+            new FindByIdUseController(new FindUserByIdUseCase(database, logger))
+        )
+    )
+
     app.listen(envs.EXPRESS_PORT, () => {
         console.log(`EXPRESS SERVER RUNNING IN PORTS: ${envs.EXPRESS_PORT}`)
     })

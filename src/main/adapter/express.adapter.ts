@@ -8,7 +8,6 @@ export const adapRouterExpress = (controller: IController) => {
             ...req.body,
             ...req.params,
         }
-
         const httpResponse = await controller.handler(request)
         return res.status(httpResponse.status).json(httpResponse.body)
     }

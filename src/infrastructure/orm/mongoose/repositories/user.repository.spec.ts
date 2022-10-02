@@ -33,7 +33,7 @@ describe(UserRepository.name, () => {
     it('should be defined methos findById', async () => {
         const modelSpyOn = jest.spyOn(model, 'findById')
 
-        await userRepository.findById({} as any)
+        await userRepository.findById('d51f33450af2400fa83e374b55573543')
 
         expect(modelSpyOn).toHaveBeenCalled()
     })

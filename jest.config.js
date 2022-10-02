@@ -11,6 +11,7 @@ module.exports = {
         'interface.ts',
         'dto.ts',
         'schema.ts',
+        'model.ts',
         'database.ts',
         'decorator.ts',
         'logger.ts',
