@@ -6,7 +6,7 @@ export class CreateUserEntity implements ICreateUser {
     email!: string
     password!: string
     status?: Status
-
+    id!: string
     constructor(userData: ICreateUser) {
         Object.assign(this, userData)
     }

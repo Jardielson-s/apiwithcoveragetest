@@ -2,9 +2,9 @@ import { IController } from '../../shared/interfaces/IController.interface'
 import { IRepository } from '../../shared/interfaces/IRepository.interface'
 import { IUseCase } from '../../shared/interfaces/IUseCase.interface'
 import { useCaseStub } from '../../shared/test/stub/repository.stub'
-import { CreateUserController } from './create-user.controller'
+import { UpateUseController } from './update-user.controller'
 
-describe(CreateUserController.name, () => {
+describe(UpateUseController.name, () => {
     let useCase: IUseCase<any>
     let repository: IRepository<any>
     let controller: IController<any>
@@ -14,7 +14,7 @@ describe(CreateUserController.name, () => {
 
         //repository = repositoryStub()
         useCase = useCaseStub()
-        controller = new CreateUserController(useCase)
+        controller = new UpateUseController(useCase)
     })
 
     it('shoul be defined', () => {
@@ -46,7 +46,7 @@ describe(CreateUserController.name, () => {
     it('should able execute with error', async () => {
         const badRequest = {
             body: 'User email already Exists',
-            status: 400,
+            status: 404,
         }
         const useCaseSpyOn = jest
             .spyOn(useCase, 'execute')

@@ -4,6 +4,7 @@ describe(CreateUserEntity.name, () => {
     let entity: CreateUserEntity
 
     let params = {
+        id: 'any-id',
         name: 'Jonh Doe',
         email: 'JonhDoe@gmail.com',
         password: 'JohnDoe1234',

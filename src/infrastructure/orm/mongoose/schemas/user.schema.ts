@@ -4,6 +4,7 @@ import { v4 } from 'uuid'
 import { Status } from 'src/domain/enums/create-user.enum'
 
 export interface IUserSchema {
+    id: string
     name: string
     email: string
     password: string
