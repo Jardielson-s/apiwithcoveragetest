@@ -1,9 +1,9 @@
 import { IController } from '../../shared/interfaces/IController.interface'
 import { IUseCase } from '../../shared/interfaces/IUseCase.interface'
 import { useCaseStub } from '../../shared/test/stub/repository.stub'
-import { FindByIdUseController } from './find-by-id-user.controller'
+import { PhysicalDeleteController } from './physical-delete.controller'
 
-describe(FindByIdUseController.name, () => {
+describe(PhysicalDeleteController.name, () => {
     let useCase: IUseCase<any>
     let controller: IController
 
@@ -11,7 +11,7 @@ describe(FindByIdUseController.name, () => {
         jest.clearAllMocks()
 
         useCase = useCaseStub()
-        controller = new FindByIdUseController(useCase)
+        controller = new PhysicalDeleteController(useCase)
     })
 
     it('should be defined', () => {
@@ -32,16 +32,7 @@ describe(FindByIdUseController.name, () => {
 
     it('should be error in execute', async () => {
         const error = { body: undefined, status: 500 }
-        jest.spyOn(useCase, 'execute').mockRejectedValue('User id not Exists')
-        const response = await controller.handler({ id: '' })
-        expect(response).toEqual(error)
-    })
-
-    it('should be error in execute', async () => {
-        const error = { body: 'User id not Exists', status: 404 }
-        jest.spyOn(useCase, 'execute').mockRejectedValue(
-            new Error('User id not Exists')
-        )
+        jest.spyOn(useCase, 'execute').mockRejectedValue('')
         const response = await controller.handler({ id: '' })
         expect(response).toEqual(error)
     })

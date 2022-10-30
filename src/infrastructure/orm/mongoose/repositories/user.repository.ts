@@ -15,4 +15,10 @@ export class UserRepository implements IRepository<IUserSchema> {
     async findByEmail(email: string): Promise<IUserDocument | null> {
         return this.model.findOne({ email: email })
     }
+    async update(data: IUserSchema, id: string): Promise<IUserSchema | null> {
+        return this.model.findByIdAndUpdate(id, data, { new: true })
+    }
+    async delete(id: string): Promise<any> {
+        return this.model.remove({ id: id })
+    }
 }

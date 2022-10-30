@@ -2,6 +2,9 @@ import { IsString, MaxLength, MinLength } from 'class-validator'
 
 export class CreateUserDto {
     @IsString()
+    id!: string
+
+    @IsString()
     @MinLength(4)
     @MaxLength(100)
     name!: string

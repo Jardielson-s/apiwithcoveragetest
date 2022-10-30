@@ -1,4 +1,3 @@
-import { FindUserByIdUseCase } from './find-user-id.use-case'
 import { ILoggerService } from '../../../shared/interfaces/ILoggerServices.interface'
 import { IRepository } from '../../../shared/interfaces/IRepository.interface'
 import { ICreateUser } from '../../../domain/interfaces/Icreate-user.interface'
@@ -7,8 +6,9 @@ import {
     repositoryStub,
     serviceLoggerStub,
 } from '../../../shared/test/stub/repository.stub'
+import { PhysicalDeleteUseCase } from './physical-delete.use-case'
 
-describe(FindUserByIdUseCase.name, () => {
+describe(PhysicalDeleteUseCase.name, () => {
     let serviceLogger: ILoggerService
     let repository: IRepository<ICreateUser>
     let useCase: IUseCase<any, any>
@@ -18,7 +18,7 @@ describe(FindUserByIdUseCase.name, () => {
 
         serviceLogger = serviceLoggerStub()
         repository = repositoryStub()
-        useCase = new FindUserByIdUseCase(repository, serviceLogger)
+        useCase = new PhysicalDeleteUseCase(repository, serviceLogger)
     })
 
     it('should be defined', () => {
@@ -31,7 +31,7 @@ describe(FindUserByIdUseCase.name, () => {
 
     it('must be able to execute when called execution method', async () => {
         const repositorySpyOne = jest
-            .spyOn(repository, 'findById')
+            .spyOn(repository, 'delete')
             .mockResolvedValue({} as any)
 
         await useCase.execute({ id: 'd51f33450af2400fa83e374b55573543' })
@@ -40,7 +40,13 @@ describe(FindUserByIdUseCase.name, () => {
     })
 
     it('method with success must be executed', async () => {
-        jest.spyOn(repository, 'findById').mockResolvedValue(null)
+        jest.spyOn(repository, 'delete').mockResolvedValue(null)
+        const response = await useCase.execute({ id: '' })
+        expect(response).toBeDefined()
+    })
+
+    it('method with success must be executed', async () => {
+        jest.spyOn(repository, 'delete').mockRejectedValue({ message: '' })
         const response = await useCase.execute({ id: '' })
         expect(response).toBeDefined()
     })

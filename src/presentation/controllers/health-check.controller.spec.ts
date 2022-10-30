@@ -1,11 +1,7 @@
 import { HealthCheckController } from './health-check.controller'
 import { IUseCase } from '../../shared/interfaces/IUseCase.interface'
+import { useCaseStub } from '../../shared/test/stub/repository.stub'
 
-const stub = Object.freeze({
-    execute: jest.fn(),
-})
-
-export const useCaseStub = () => stub as IUseCase<unknown>
 describe(HealthCheckController.name, () => {
     let useCase: IUseCase<unknown, unknown>
     let controller: HealthCheckController

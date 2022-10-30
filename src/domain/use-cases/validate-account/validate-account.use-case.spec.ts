@@ -1,20 +1,12 @@
+import {
+    repositoryStub,
+    serviceLoggerStub,
+} from '../../../shared/test/stub/repository.stub'
 import { ICreateUser } from '../../../domain/interfaces/Icreate-user.interface'
 import { ILoggerService } from '../../../shared/interfaces/ILoggerServices.interface'
 import { IRepository } from '../../../shared/interfaces/IRepository.interface'
 import { IUseCase } from '../../../shared/interfaces/IUseCase.interface'
 import { ValidateAccountUseCase } from './validate-account.use-case'
-
-const stubLogger = Object.freeze({
-    info: jest.fn(),
-})
-const loggerServiceStub = (): any => stubLogger as ILoggerService
-
-const stubRepository = Object.freeze({
-    findById: jest.fn(),
-    save: jest.fn(),
-})
-const repositoryStub = (): any =>
-    stubRepository as unknown as IRepository<ICreateUser>
 
 describe(ValidateAccountUseCase.name, () => {
     let loggerService: ILoggerService
@@ -24,7 +16,7 @@ describe(ValidateAccountUseCase.name, () => {
     beforeEach(() => {
         jest.clearAllMocks()
 
-        loggerService = loggerServiceStub()
+        loggerService = serviceLoggerStub()
         repository = repositoryStub()
         useCase = new ValidateAccountUseCase(repository, loggerService)
     })

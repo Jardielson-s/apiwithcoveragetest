@@ -1,10 +1,15 @@
 import { DataSource } from 'typeorm'
 import { UserRepository } from './user.repository'
 
+// for update typeorm with manager
+const raw = () => {}
+
 const stub = Object.freeze({
     manager: {
         save: jest.fn(),
         findOneBy: jest.fn(),
+        update: jest.fn(() => raw),
+        delete: jest.fn(),
     },
 })
 
@@ -48,5 +53,17 @@ describe(UserRepository.name, () => {
         await userRepository.findByEmail('john@gmail.com')
 
         expect(findByEmailSpyOne).toHaveBeenCalled()
+    })
+
+    it('should be execute update', async () => {
+        const updateSpyOne = jest.spyOn(userRepository, 'update')
+        await userRepository.update({} as any, 'any-id')
+        expect(updateSpyOne).toHaveBeenCalled()
+    })
+
+    it('should be execute delete', async () => {
+        const updateSpyOne = jest.spyOn(userRepository, 'delete')
+        await userRepository.delete('any-id')
+        expect(updateSpyOne).toHaveBeenCalled()
     })
 })

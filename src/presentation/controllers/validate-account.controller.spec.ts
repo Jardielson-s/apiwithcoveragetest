@@ -1,12 +1,8 @@
-import { IController } from 'src/shared/interfaces/IController.interface'
-import { IUseCase } from 'src/shared/interfaces/IUseCase.interface'
+import { IController } from '../../shared/interfaces/IController.interface'
+import { IUseCase } from '../../shared/interfaces/IUseCase.interface'
+import { useCaseStub } from '../../shared/test/stub/repository.stub'
 import { FindByIdUserDto } from '../dto/find-by-id-user.dto'
 import { ValidateAccountController } from './validate-account.controller'
-
-const stub = Object.freeze({
-    execute: jest.fn(),
-})
-const useCaseStub = (): any => stub as IUseCase<any>
 
 describe(ValidateAccountController.name, () => {
     let controller: IController<FindByIdUserDto>

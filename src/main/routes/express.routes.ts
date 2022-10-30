@@ -14,6 +14,10 @@ import { FindByIdUseController } from '../../presentation/controllers/find-by-id
 import { FindUserByIdUseCase } from '../../domain/use-cases/find-user-id/find-user-id.use-case'
 import { ValidateAccountController } from '../../presentation/controllers/validate-account.controller'
 import { ValidateAccountUseCase } from '../../domain/use-cases/validate-account/validate-account.use-case'
+import { UpateUseController } from '../../presentation/controllers/update-user.controller'
+import { UpdateUserUseCase } from '../../domain/use-cases/update-user/update-user.use-case'
+import { PhysicalDeleteController } from '../../presentation/controllers/physical-delete.controller'
+import { PhysicalDeleteUseCase } from '../../domain/use-cases/physical-delete/physical-delete.use-case'
 
 const options = {
     definition: {
@@ -66,6 +70,21 @@ export const startServerExpress = async () => {
         )
     )
 
+    app.patch(
+        '/api/user/:id',
+        adapRouterExpress(
+            new UpateUseController(new UpdateUserUseCase(database, logger))
+        )
+    )
+
+    app.delete(
+        '/api/user/:id',
+        adapRouterExpress(
+            new PhysicalDeleteController(
+                new PhysicalDeleteUseCase(database, logger)
+            )
+        )
+    )
     app.listen(envs.EXPRESS_PORT, () => {
         console.log(`EXPRESS SERVER RUNNING IN PORTS: ${envs.EXPRESS_PORT}`)
     })

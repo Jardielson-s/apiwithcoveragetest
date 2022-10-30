@@ -5,14 +5,15 @@ import {
     repositoryStub,
     serviceLoggerStub,
 } from '../../../shared/test/stub/repository.stub'
-import { CreateUserUseCase } from './create-user.use-case'
+import { UpdateUserUseCase } from './update-user.use-case'
 
-describe(CreateUserUseCase.name, () => {
+describe(UpdateUserUseCase.name, () => {
     let useCase: IUseCase<any, any>
     let repository: IRepository<any>
     let loggerService: ILoggerService
 
     let params = {
+        id: 'any-id',
         name: 'Jonh Doe',
         email: 'JonhDoe@gmail.com',
         password: 'JohnDoe1234',
@@ -22,7 +23,7 @@ describe(CreateUserUseCase.name, () => {
 
         loggerService = serviceLoggerStub()
         repository = repositoryStub()
-        useCase = new CreateUserUseCase(repository, loggerService)
+        useCase = new UpdateUserUseCase(repository, loggerService)
     })
 
     it('should be defined', () => {
@@ -34,7 +35,7 @@ describe(CreateUserUseCase.name, () => {
     })
 
     it('should able method execute with sucess', async () => {
-        const repositorySpyOn = jest.spyOn(repository, 'save')
+        const repositorySpyOn = jest.spyOn(repository, 'update')
 
         await useCase.execute(params)
 
