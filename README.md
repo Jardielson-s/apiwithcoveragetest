@@ -17,6 +17,9 @@ Clean code based api, clean architecture and tdd. Api fully decoupled from frame
 <br/>
 
 ### Start Project
+<p>
+use this project for email service:
+<a href="https://github.com/Jardielson-s/send-email"> send-email-service </a></p>
 
 ```
 # elasticSearch
@@ -24,6 +27,10 @@ docker run -d -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.e
 
 # kibana
 docker run --link 689a8a4625c7:elasticsearch -d -p 5601:5601 docker.elastic.co/kibana/kibana:7.7.0
+
+# send-email-service 
+# https://github.com/Jardielson-s/send-email
+npm run start:dev
 
 # nove version v14.19.2
 npm i # intall dependencies
@@ -51,17 +58,6 @@ http://localhost:[port]/api-docs
 <img src="https://miro.medium.com/max/964/1*lhpcX6Vljr7p4OvKql3x6Q.png" style="height: 500px; width:500px"/>
 </p>
 
-<p align="center">
-
-| Layer          |             |          |               |
-| -------------- | ----------- | -------- | ------------- |
-| domain         | use-cases   | entities |               |
-| infrastructure | databases   | aws      | elasticSearch |
-| main           | framework   | restify  | express       |
-| presentation   | controllers | handlers |               |
-
-</p>
-
 <br/>
 
 ## Implementations
@@ -71,4 +67,4 @@ http://localhost:[port]/api-docs
 -   [x] Update User
 -   [x] Delete User
 -   [x] Account Validation
--   [ ] send mail throught aws ses
+-   [x] send mail throught aws ses

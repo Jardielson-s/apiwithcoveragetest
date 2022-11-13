@@ -9,27 +9,26 @@ const FIND_USER_BY_ID_USE_CASE_FOUND = 'find_user_by_id_use_case_found'
 const FIND_USER_BY_ID_USE_CASE_ERROR = 'find_user_by_id_use_case_received'
 
 export class FindUserByIdUseCase implements IUseCase<IFindByIdUser> {
-    constructor(
-        private readonly repository: IRepository<ICreateUser>,
-        private readonly loggerService: ILoggerService
-    ) {}
+  constructor (
+    private readonly repository: IRepository<ICreateUser>,
+    private readonly loggerService: ILoggerService
+  ) {}
 
-    async execute(data: IFindByIdUser): Promise<ICreateUser> {
-        try {
-            const findEmail = await this.repository.findById(data.id)
-            if (!findEmail) {
-                throw new Error('User id not Exists')
-            }
+  async execute (data: IFindByIdUser): Promise<ICreateUser> {
+    try {
+      const findEmail = await this.repository.findById(data.id)
+      if (findEmail == null) {
+        throw new Error('User id not Exists')
+      }
 
-            this.loggerService.info(FIND_USER_BY_ID_USE_CASE_FOUND, data.id)
-
-            return findEmail
-        } catch (error: any) {
-            this.loggerService.info(
-                FIND_USER_BY_ID_USE_CASE_ERROR,
-                error.message
-            )
-            return error
-        }
+      this.loggerService.info(FIND_USER_BY_ID_USE_CASE_FOUND, data.id)
+      return findEmail
+    } catch (error: any) {
+      this.loggerService.info(
+        FIND_USER_BY_ID_USE_CASE_ERROR,
+        error.message
+      )
+      return error
     }
+  }
 }

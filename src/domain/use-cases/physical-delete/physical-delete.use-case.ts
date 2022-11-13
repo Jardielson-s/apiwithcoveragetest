@@ -9,22 +9,22 @@ const PHYSICAL_DELETE_USE_CASE_DELETED = 'physical_delete_use_case_deleted'
 const PHYSICAL_DELETE_USE_CASE_ERROR = 'physical_delete_use_case_received'
 
 export class PhysicalDeleteUseCase implements IUseCase<IFindByIdUser> {
-    constructor(
-        private readonly repository: IRepository<ICreateUser>,
-        private readonly loggerService: ILoggerService
-    ) {}
+  constructor (
+    private readonly repository: IRepository<ICreateUser>,
+    private readonly loggerService: ILoggerService
+  ) {}
 
-    async execute(data: IFindByIdUser): Promise<ICreateUser> {
-        try {
-            const user = await this.repository.delete(data.id)
-            this.loggerService.info(PHYSICAL_DELETE_USE_CASE_DELETED, data.id)
-            return user
-        } catch (error: any) {
-            this.loggerService.info(
-                PHYSICAL_DELETE_USE_CASE_ERROR,
-                error.message
-            )
-            return error
-        }
+  async execute (data: IFindByIdUser): Promise<ICreateUser> {
+    try {
+      const user = await this.repository.delete(data.id)
+      this.loggerService.info(PHYSICAL_DELETE_USE_CASE_DELETED, data.id)
+      return user
+    } catch (error: any) {
+      this.loggerService.info(
+        PHYSICAL_DELETE_USE_CASE_ERROR,
+        error.message
+      )
+      return error
     }
+  }
 }

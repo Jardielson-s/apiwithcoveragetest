@@ -9,30 +9,31 @@ const VALIDATE_ACCOUNT_USECASE_VALIDATED = 'validation.account.usecase.received'
 const VALIDATE_ACCOUNT_USECASE_ERROR = 'validation.account.usecase.error'
 
 export class ValidateAccountUseCase implements IUseCase<IFindByIdUser> {
-    constructor(
-        private readonly repository: IRepository<ICreateUser>,
-        private readonly loggerService: ILoggerService
-    ) {}
-    async execute(data: IFindByIdUser): Promise<string | void> {
-        try {
-            let accountValidation = await this.repository.findById(data.id)
-            if (!accountValidation) {
-                throw new Error('Account validation failure')
-            }
+  constructor (
+    private readonly repository: IRepository<ICreateUser>,
+    private readonly loggerService: ILoggerService
+  ) {}
 
-            accountValidation.status = Status.ACTIVE
-            await this.repository.save(accountValidation)
+  async execute (data: IFindByIdUser): Promise<string | void> {
+    try {
+      const accountValidation = await this.repository.findById(data.id)
+      if (accountValidation == null) {
+        throw new Error('Account validation failure')
+      }
 
-            this.loggerService.info(
-                VALIDATE_ACCOUNT_USECASE_VALIDATED,
-                accountValidation
-            )
-        } catch (error: any) {
-            this.loggerService.info(
-                VALIDATE_ACCOUNT_USECASE_ERROR,
-                error.message
-            )
-            return error
-        }
+      accountValidation.status = Status.ACTIVE
+      await this.repository.save(accountValidation)
+
+      this.loggerService.info(
+        VALIDATE_ACCOUNT_USECASE_VALIDATED,
+        accountValidation
+      )
+    } catch (error: any) {
+      this.loggerService.info(
+        VALIDATE_ACCOUNT_USECASE_ERROR,
+        error.message
+      )
+      return error
     }
+  }
 }

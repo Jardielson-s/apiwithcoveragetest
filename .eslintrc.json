@@ -8,6 +8,10 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "no-console":"off"
+        "no-console":"off",
+        "restrict-template-expressions": "off",
+        "explicit-function-return-type": "off",
+        "no-invalid-void-type": "off",
+        "strict-boolean-expressions": "off"
     }
 }

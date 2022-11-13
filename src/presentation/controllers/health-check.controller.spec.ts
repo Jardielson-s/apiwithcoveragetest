@@ -3,35 +3,35 @@ import { IUseCase } from '../../shared/interfaces/IUseCase.interface'
 import { useCaseStub } from '../../shared/test/stub/repository.stub'
 
 describe(HealthCheckController.name, () => {
-    let useCase: IUseCase<unknown, unknown>
-    let controller: HealthCheckController
+  let useCase: IUseCase<unknown, unknown>
+  let controller: HealthCheckController
 
-    beforeEach(() => {
-        jest.clearAllMocks()
+  beforeEach(() => {
+    jest.clearAllMocks()
 
-        useCase = useCaseStub()
-        controller = new HealthCheckController(useCase)
-    })
+    useCase = useCaseStub()
+    controller = new HealthCheckController(useCase)
+  })
 
-    it('should be defined', () => {
-        expect(controller).toBeDefined()
-    })
+  it('should be defined', () => {
+    expect(controller).toBeDefined()
+  })
 
-    it('should be defined method handle', () => {
-        expect(controller.handler).toBeDefined()
-    })
+  it('should be defined method handle', () => {
+    expect(controller.handler).toBeDefined()
+  })
 
-    it('should able execute when call', async () => {
-        const useCaseSpyOn = jest.spyOn(useCase, 'execute')
+  it('should able execute when call', async () => {
+    const useCaseSpyOn = jest.spyOn(useCase, 'execute')
 
-        await controller.handler()
+    await controller.handler()
 
-        expect(useCaseSpyOn).toHaveBeenCalled()
-    })
+    expect(useCaseSpyOn).toHaveBeenCalled()
+  })
 
-    it('should able execute with error when call', async () => {
-        controller = new HealthCheckController({} as any)
-        const response = await controller.handler()
-        expect(response).toBeDefined()
-    })
+  it('should able execute with error when call', async () => {
+    controller = new HealthCheckController({} as any)
+    const response = await controller.handler()
+    expect(response).toBeDefined()
+  })
 })

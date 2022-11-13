@@ -5,20 +5,20 @@ import { Status } from '../../../../domain/enums/create-user.enum'
 
 @Entity()
 export class User {
-    @PrimaryColumn('uuid')
+  @PrimaryColumn('uuid')
     id?: string = v4().replace(/\-/g, '')
 
-    @Column({
-        length: 100,
-    })
+  @Column({
+    length: 100
+  })
     name!: string
 
-    @Column('text')
+  @Column('text')
     email!: string
 
-    @Column('text')
+  @Column('text')
     password!: string
 
-    @Column('text')
+  @Column('text')
     status?: Status = Status.PROCESS
 }

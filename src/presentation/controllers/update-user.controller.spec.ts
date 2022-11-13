@@ -1,59 +1,57 @@
 import { IController } from '../../shared/interfaces/IController.interface'
-import { IRepository } from '../../shared/interfaces/IRepository.interface'
 import { IUseCase } from '../../shared/interfaces/IUseCase.interface'
 import { useCaseStub } from '../../shared/test/stub/repository.stub'
 import { UpateUseController } from './update-user.controller'
 
 describe(UpateUseController.name, () => {
-    let useCase: IUseCase<any>
-    let repository: IRepository<any>
-    let controller: IController<any>
+  let useCase: IUseCase<any>
+  let controller: IController<any>
 
-    beforeEach(() => {
-        jest.clearAllMocks()
+  beforeEach(() => {
+    jest.clearAllMocks()
 
-        //repository = repositoryStub()
-        useCase = useCaseStub()
-        controller = new UpateUseController(useCase)
-    })
+    // repository = repositoryStub()
+    useCase = useCaseStub()
+    controller = new UpateUseController(useCase)
+  })
 
-    it('shoul be defined', () => {
-        expect(controller).toBeDefined()
-    })
+  it('shoul be defined', () => {
+    expect(controller).toBeDefined()
+  })
 
-    it('shoul be defined method handler', () => {
-        expect(controller.handler).toBeDefined()
-    })
+  it('shoul be defined method handler', () => {
+    expect(controller.handler).toBeDefined()
+  })
 
-    it('should able execute with sucess', async () => {
-        const useCaseSpyOn = jest.spyOn(useCase, 'execute')
+  it('should able execute with sucess', async () => {
+    const useCaseSpyOn = jest.spyOn(useCase, 'execute')
 
-        await controller.handler({} as any)
+    await controller.handler({} as any)
 
-        expect(useCaseSpyOn).toHaveBeenCalled()
-    })
+    expect(useCaseSpyOn).toHaveBeenCalled()
+  })
 
-    it('should able execute with error', async () => {
-        const serverError = { body: undefined, status: 500 }
+  it('should able execute with error', async () => {
+    const serverError = { body: undefined, status: 500 }
 
-        jest.spyOn(useCase, 'execute').mockRejectedValue({} as any)
+    jest.spyOn(useCase, 'execute').mockRejectedValue({} as any)
 
-        const reponse = await controller.handler(null)
+    const reponse = await controller.handler(null)
 
-        expect(reponse).toEqual(serverError)
-    })
+    expect(reponse).toEqual(serverError)
+  })
 
-    it('should able execute with error', async () => {
-        const badRequest = {
-            body: 'User email already Exists',
-            status: 404,
-        }
-        const useCaseSpyOn = jest
-            .spyOn(useCase, 'execute')
-            .mockRejectedValue(new Error('User email already Exists'))
+  it('should able execute with error', async () => {
+    const badRequest = {
+      body: 'User email already Exists',
+      status: 404
+    }
+    const useCaseSpyOn = jest
+      .spyOn(useCase, 'execute')
+      .mockRejectedValue(new Error('User email already Exists'))
 
-        const response = await controller.handler({} as any)
-        expect(response).toEqual(badRequest)
-        expect(useCaseSpyOn).toHaveBeenCalled()
-    })
+    const response = await controller.handler({} as any)
+    expect(response).toEqual(badRequest)
+    expect(useCaseSpyOn).toHaveBeenCalled()
+  })
 })

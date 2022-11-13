@@ -3,11 +3,11 @@ import { ILoggerService } from 'src/shared/interfaces/ILoggerServices.interface'
 import { esTransport } from './config/elastic.config'
 
 export const logger: ILoggerService = createLogger({
-    transports: [
-        new transports.Console({
-            level: 'info',
-            format: format.json(),
-        }),
-        esTransport,
-    ],
+  transports: [
+    new transports.Console({
+      level: 'info',
+      format: format.json()
+    }),
+    esTransport
+  ]
 })

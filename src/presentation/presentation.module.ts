@@ -1,0 +1,6 @@
+export * from './controllers/create-user.controller'
+export * from './controllers/find-by-id-user.controller'
+export * from './controllers/health-check.controller'
+export * from './controllers/physical-delete.controller'
+export * from './controllers/update-user.controller'
+export * from './controllers/validate-account.controller'

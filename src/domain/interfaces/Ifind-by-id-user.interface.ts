@@ -1,3 +1,3 @@
 export interface IFindByIdUser {
-    id: string
+  id: string
 }
